@@ -1,0 +1,15 @@
+.greeting-card{
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 8px 0;
+}
+p {
+  margin: 0;
+  opacity: 0.9;
+}
