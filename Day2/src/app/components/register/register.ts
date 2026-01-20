@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -20,5 +20,16 @@ export class Register {
 
   validateAge() {
     this.ageErrValidation = this.age === null || this.age <= 0;
+  }
+
+
+  @Output() registrationData = new EventEmitter<{name:string, age:number|null}>()
+  submitRegistration(){
+    this.validateName();
+    this.validateAge();
+
+    if (!this.nameErrValidation && !this.ageErrValidation){
+      this.registrationData.emit({name:this.name, age: this.age})
+    }
   }
 }
