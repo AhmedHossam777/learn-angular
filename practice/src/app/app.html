@@ -4,5 +4,9 @@
   <app-app-greeting [personName]="username"/>
   <app-user-profile [user]="admin"/>
   <app-user-profile [user]="regularUser"/>
+  <br>
+
+  <app-child-btn (clicked)="handleChildBtnClick()"/>
+  <p>is liked : {{ isLiked }}</p>
 
 </div>

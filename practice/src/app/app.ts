@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AppGreeting } from './components/app-greeting/app-greeting';
 import { User, UserProfile } from './components/user-profile/user-profile';
+import { ChildBtn } from './components/child-btn/child-btn';
 
 @Component({
   selector: 'app-root',
-  imports: [AppGreeting, UserProfile],
+  imports: [AppGreeting, UserProfile, ChildBtn],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -29,4 +30,9 @@ export class App {
     isOnline: false,
     joinDate: new Date('2023-06-20'),
   };
+
+  isLiked = false;
+  handleChildBtnClick() {
+    this.isLiked = true;
+  }
 }

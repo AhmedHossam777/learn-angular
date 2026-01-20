@@ -1,1 +1,29 @@
-<p>register works!</p>
+<div class="registration-card">
+  <h3>Enter your name</h3>
+  <input
+    (blur)="validateName()"
+    (input)="validateName()"
+    [(ngModel)]="name"
+    placeholder="Enter name"
+    type="text"
+  />
+  @if (nameErrValidation) {
+    <p class="error-msg">Please enter a valid name</p>
+  }
+
+  <h3>Enter your age</h3>
+  <input
+    (blur)="validateAge()"
+    (input)="validateAge()"
+    [(ngModel)]="age"
+    placeholder="Age"
+    type="number"
+  />
+
+
+  @if (ageErrValidation) {
+    <p class="error-msg">Please enter a valid age</p>
+  }
+
+  <button>add</button>
+</div>
