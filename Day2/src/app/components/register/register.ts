@@ -1,5 +1,10 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+
+export type User = {
+  name: string;
+  age: number | null
+}
 
 @Component({
   selector: 'app-register',
@@ -23,13 +28,14 @@ export class Register {
   }
 
 
-  @Output() registrationData = new EventEmitter<{name:string, age:number|null}>()
-  submitRegistration(){
+  @Output() registrationData = new EventEmitter<User>()
+
+  submitRegistration() {
     this.validateName();
     this.validateAge();
 
-    if (!this.nameErrValidation && !this.ageErrValidation){
-      this.registrationData.emit({name:this.name, age: this.age})
+    if (!this.nameErrValidation && !this.ageErrValidation) {
+      this.registrationData.emit({name: this.name, age: this.age})
     }
   }
 }

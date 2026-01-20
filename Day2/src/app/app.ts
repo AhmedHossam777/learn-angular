@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Register } from './components/register/register';
+import {Register, User} from './components/register/register';
 import {Students} from './components/students/students';
 
 @Component({
@@ -9,7 +9,9 @@ import {Students} from './components/students/students';
   styleUrl: './app.css',
 })
 export class App {
-  handleRegisterData(data:any){
-    console.log(data)
+  usersArray: User[] = []
+  handleRegisterData(user:User){
+    this.usersArray.push(user)
+    console.log(this.usersArray)
   }
 }
