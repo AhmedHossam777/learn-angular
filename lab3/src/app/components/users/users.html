@@ -1,1 +1,24 @@
-<p>users works!</p>
+<div class="container mx-auto p-6 min-h-screen">
+  <table class="min-w-full bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-blue-600 text-white">
+    <tr>
+      <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">ID</th>
+      <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Name</th>
+      <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Actions</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      @for (user of users; track user.id) {
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="px-6 py-4 text-sm text-gray-900">{{ user.id }}</td>
+          <td class="px-6 py-4 text-sm text-gray-900">{{ user.username }}</td>
+          <td class="px-6 py-4 text-sm">
+            <a [routerLink]="['/users', user.id]" class="text-blue-600 hover:text-blue-800 hover:underline font-medium">
+              View Details
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
