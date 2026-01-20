@@ -1,0 +1,24 @@
+<div class="detail-container">
+  @if (product) {
+    <div class="product-detail">
+      <h1>{{ product.name }}</h1>
+      <div class="detail-content">
+        <p class="price">${{ product.price }}</p>
+        <p class="description">{{ product.description }}</p>
+        <p class="stock" [class.in-stock]="product.inStock" [class.out-of-stock]="!product.inStock">
+          {{ product.inStock ? '✓ In Stock' : '✗ Out of Stock' }}
+        </p>
+        <p class="route-info">
+          <strong>Route Parameter:</strong> Product ID = {{ productId }}
+        </p>
+      </div>
+      <a routerLink="/products" class="back-btn">← Back to Products</a>
+    </div>
+  } @else {
+    <div class="not-found">
+      <h1>Product Not Found</h1>
+      <p>The product with ID "{{ productId }}" doesn't exist.</p>
+      <a routerLink="/products" class="back-btn">← Back to Products</a>
+    </div>
+  }
+</div>

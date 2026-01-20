@@ -1,0 +1,84 @@
+.detail-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.product-detail {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+.detail-content {
+  margin: 30px 0;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #27ae60;
+  margin: 20px 0;
+}
+
+.description {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.stock {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.in-stock {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.out-of-stock {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.route-info {
+  background-color: #e7f3ff;
+  padding: 15px;
+  border-left: 4px solid #3498db;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.not-found {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.not-found h1 {
+  color: #e74c3c;
+}

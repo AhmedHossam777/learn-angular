@@ -1,12 +1,23 @@
-<div>
-  <h1>Welcome to the Application!</h1>
-  <p>This is the main app component.</p>
-  <app-app-greeting [personName]="username"/>
-  <app-user-profile [user]="admin"/>
-  <app-user-profile [user]="regularUser"/>
-  <br>
+<div class="app-container">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <h2>Angular Routing Demo</h2>
+    </div>
+    <ul class="nav-links">
+      <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+    </ul>
+  </nav>
 
-  <app-child-btn (clicked)="handleChildBtnClick()"/>
-  <p>is liked : {{ isLiked }}</p>
+  <!-- Router Outlet: This is where routed components will be displayed -->
+  <main class="main-content">
+    <router-outlet />
+  </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Angular Routing Tutorial | Learn by {{ username }}</p>
+  </footer>
 </div>
