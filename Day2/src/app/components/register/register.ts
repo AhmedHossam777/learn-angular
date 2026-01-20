@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 export type User = {
   name: string;
@@ -8,34 +9,35 @@ export type User = {
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   standalone: true,
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
-  nameErrValidation = false;
-  name = '';
-  ageErrValidation = false;
-  age: number | null = null;
-
-  validateName() {
-    this.nameErrValidation = this.name.trim().length === 0;
-  }
-
-  validateAge() {
-    this.ageErrValidation = this.age === null || this.age <= 0;
-  }
-
+  registerForm: FormGroup;
 
   @Output() registrationData = new EventEmitter<User>()
 
-  submitRegistration() {
-    this.validateName();
-    this.validateAge();
+  constructor(private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(1)]],
+      age: [null, [Validators.required, Validators.min(1)]]
+    })
+  }
 
-    if (!this.nameErrValidation && !this.ageErrValidation) {
-      this.registrationData.emit({name: this.name, age: this.age})
+  submitRegistration() {
+    if (this.registerForm.valid) {
+      this.registrationData.emit(this.registerForm.value)
+      this.registerForm.reset()
     }
+  }
+
+  get name() {
+    return this.registerForm.get('name')
+  }
+
+  get age() {
+    return this.registerForm.get('age')
   }
 }

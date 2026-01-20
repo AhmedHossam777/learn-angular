@@ -1,3 +1,5 @@
-<div class="container"></div>
-<app-register (registrationData)="handleRegisterData($event)"/>
-<app-students [users]="usersArray"/>
+<div class="container">
+  <h2>Student Registration</h2>
+  <app-register (registrationData)="handleRegisterData($event)"/>
+  <app-students [users]="usersArray" />
+</div>

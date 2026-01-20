@@ -1,16 +1,19 @@
-<table class="student-table">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Age</th>
-  </tr>
-  </thead>
-  <tbody>
-    @for (user of users; track user) {
-      <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ user.age }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+<div class="mt-4">
+  <h3>Students List</h3>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track user) {
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

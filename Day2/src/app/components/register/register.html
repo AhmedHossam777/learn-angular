@@ -1,29 +1,33 @@
-<div class="registration-card">
-  <h3>Enter your name</h3>
-  <input
-    (blur)="validateName()"
-    (input)="validateName()"
-    [(ngModel)]="name"
-    placeholder="Enter name"
-    type="text"
-  />
-  @if (nameErrValidation) {
-    <p class="error-msg">Please enter a valid name</p>
-  }
+<form [formGroup]="registerForm" (ngSubmit)="submitRegistration()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name:</label>
+    <input id="name" type="text" formControlName="name" class="form-control">
+    @if (name?.invalid && name?.touched) {
+      <div class="text-danger">
+        @if (name?.errors?.['required']) {
+          <small>Name is required</small>
+        }
+        @if (name?.errors?.['minlength']) {
+          <small>Name must be at least 1 character</small>
+        }
+      </div>
+    }
+  </div>
 
-  <h3>Enter your age</h3>
-  <input
-    (blur)="validateAge()"
-    (input)="validateAge()"
-    [(ngModel)]="age"
-    placeholder="Age"
-    type="number"
-  />
+  <div class="mb-3">
+    <label for="age" class="form-label">Age:</label>
+    <input id="age" type="number" formControlName="age" class="form-control">
+    @if (age?.invalid && age?.touched) {
+      <div class="text-danger">
+        @if (age?.errors?.['required']) {
+          <small>Age is required</small>
+        }
+        @if (age?.errors?.['min']) {
+          <small>Age must be at least 1</small>
+        }
+      </div>
+    }
+  </div>
 
-
-  @if (ageErrValidation) {
-    <p class="error-msg">Please enter a valid age</p>
-  }
-
-  <button (click)="submitRegistration()">add</button>
-</div>
+  <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary">Register</button>
+</form>
