@@ -1,0 +1,11 @@
+.student-table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px auto 0;
+}
+
+.student-table th, .student-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
