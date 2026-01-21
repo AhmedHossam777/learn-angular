@@ -17,29 +17,9 @@ export type User = {
 })
 export class Users {
   users: User[] = [
-    {
-      id: 1,
-      username: 'ahmed',
-      email: 'ahmed@email.com',
-      age: 24,
-    },
-    {
-      id: 1,
-      username: 'ahmed',
-      email: 'ahmed@email.com',
-      age: 24,
-    },
-    {
-      id: 1,
-      username: 'ahmed',
-      email: 'ahmed@email.com',
-      age: 24,
-    },
-    {
-      id: 1,
-      username: 'ahmed',
-      email: 'ahmed@email.com',
-      age: 24,
-    },
+    { id: 1, username: 'ahmed', email: 'ahmed@email.com', age: 24 },
+    { id: 2, username: 'dod', email: 'ahmed@email.com', age: 24 },
+    { id: 3, username: 'hoss', email: 'ahmed@email.com', age: 24 },
+    { id: 4, username: 'bob', email: 'ahmed@email.com', age: 24 },
   ];
 }
