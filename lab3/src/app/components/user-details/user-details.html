@@ -1,1 +1,12 @@
-<p>user-details works!</p>
+<div class="container mx-auto p-6 min-h-screen">
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800 ">User Details</h2>
+    <div>
+      <p class="text-gray-700 mb-2"><span class="font-semibold">ID:</span> {{ user.id }}</p>
+      <p class="text-gray-700 mb-2"><span class="font-semibold">Username:</span> {{ user.username }}</p>
+      <p class="text-gray-700 mb-2"><span class="font-semibold">Email:</span> {{ user.email }}</p>
+      <p class="text-gray-700 mb-2"><span class="font-semibold">Full Name:</span> {{ user.age }}</p>
+      <a class="text-blue-500 hover:underline mt-4 inline-block" routerLink="/users">Back to Users List</a>
+    </div>
+  </div>
+</div>
