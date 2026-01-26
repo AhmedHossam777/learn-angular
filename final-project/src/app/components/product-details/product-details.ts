@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Product} from '../../services/product.service';
 import {IProduct} from '../../services/product.interfaces';
 import {CurrencyPipe} from '@angular/common';
@@ -17,7 +17,7 @@ export class ProductDetails implements OnInit {
   productId: string | null = null;
   product: IProduct | null = null;
 
-  constructor(private route: ActivatedRoute, private productService: Product, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private router: Router, private productService: Product, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -32,7 +32,20 @@ export class ProductDetails implements OnInit {
         console.error(err)
       }
     })
+  }
 
+  delete() {
+    this.productId = this.route.snapshot.paramMap.get('id')
+    this.productService.deleteOne(this.productId).subscribe({
+      next: (response) => {
+        if (response.status === 204) {
+          this.router.navigate(['/products']);
+        }
+      },
+      error: (error) => {
+        console.error('Delete failed:', error);
+      }
+    })
   }
 
 }

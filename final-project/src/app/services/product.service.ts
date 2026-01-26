@@ -18,4 +18,11 @@ export class Product {
   getOne(id: string | null): Observable<OneProductResponse> {
     return this.http.get<OneProductResponse>(`${this.apiUrl}/${id}`)
   }
+
+  deleteOne(id: string | null): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      observe: 'response',
+      responseType: 'text'
+    })
+  }
 }
