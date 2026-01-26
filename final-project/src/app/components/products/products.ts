@@ -1,28 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import { Product} from '../../services/product.service';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Product} from '../../services/product.service';
 import {IProduct} from '../../services/product.interfaces';
+import {CommonModule, CurrencyPipe} from '@angular/common';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-products',
-  imports: [],
+  imports: [
+    CurrencyPipe,
+    RouterLink,
+    CommonModule
+  ],
   templateUrl: './products.html',
   styleUrl: './products.css',
+  standalone: true
 })
-export class Products {
+export class Products implements OnInit {
   products: IProduct[] = []
 
-  constructor(private productService: Product) {
+  constructor(private productService: Product, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.productService.getAll().subscribe({
       next: (response) => {
-        console.log(response.data)
         this.products = response.data
+        this.cdr.detectChanges() // Force change detection
       },
-      error :(err)=>{
-        console.error('Error fetching products:', err)      }
+      error: (err) => {
+      }
     })
   }
-
 }

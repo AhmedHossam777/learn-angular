@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ProductsResponse} from './product.interfaces';
+import {ProductsResponse, OneProductResponse} from './product.interfaces';
 
 
 @Injectable({
@@ -13,5 +13,9 @@ export class Product {
 
   getAll(): Observable<ProductsResponse> {
     return this.http.get<ProductsResponse>(this.apiUrl)
+  }
+
+  getOne(id: string | null): Observable<OneProductResponse> {
+    return this.http.get<OneProductResponse>(`${this.apiUrl}/${id}`)
   }
 }

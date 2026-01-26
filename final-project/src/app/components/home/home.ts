@@ -8,6 +8,7 @@ import {RouterLink} from '@angular/router';
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
+  standalone: true
 })
 export class Home {
 

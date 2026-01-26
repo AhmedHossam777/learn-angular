@@ -12,3 +12,8 @@ export interface ProductsResponse {
   total_count: number
   has_more: boolean
 }
+
+export interface OneProductResponse {
+  success: boolean,
+  data: IProduct
+}
