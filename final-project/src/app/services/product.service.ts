@@ -8,6 +8,7 @@ import {ProductsResponse, OneProductResponse, IProduct, ProductData} from './pro
 })
 export class Product {
   private http = inject(HttpClient);
+  // this comes from golang backend project I made for practice
   private apiUrl = 'http://localhost:8080/api/v1/products';
 
   getAll(): Observable<ProductsResponse> {
