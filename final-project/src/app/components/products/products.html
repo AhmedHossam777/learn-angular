@@ -1,35 +1,47 @@
 <div class="min-h-screen bg-black text-white">
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-5xl md:text-6xl font-black text-center mb-12 tracking-tight">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-center mb-8 sm:mb-10 lg:mb-12 tracking-tight">
       OUR COLLECTION
     </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
       @for (product of products; track product.id) {
-        <div
-          class="bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors duration-300 overflow-hidden border border-zinc-800">
-          <img
-            src="/sheo-img.jpg"
-            alt="Product"
-            class="w-full h-48 object-cover border-b border-zinc-800"
-          />
-
-          <div class="p-6">
-            <h2 class="text-xl font-bold text-white mb-3 line-clamp-2 tracking-tight">
-              {{ product.title }}
-            </h2>
-            <p class="text-2xl font-bold text-white mb-4">
-              {{ product.price | currency }}
-            </p>
-          </div>
-          <div class="px-6 pb-6">
-            <button
-              routerLink="/products/{{ product.id }}"
-              class="w-full bg-white text-black font-bold py-3 px-4 uppercase tracking-wider hover:bg-gray-200 transition duration-300">
-              View Details
-            </button>
-          </div>
+      <div
+        class="bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors duration-300 overflow-hidden border border-zinc-800">
+        <div class="relative">
+          <img [src]="product.images && product.images.length > 0 ? product.images[0] : '/placeholder.jpg'"
+            [alt]="product.title" class="w-full h-40 sm:h-48 lg:h-56 object-cover border-b border-zinc-800" />
+          @if (product.stock <= 0) { <span
+            class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+            Out of Stock
+            </span>
+            } @else if (product.stock <= 10) { <span
+              class="absolute top-2 right-2 bg-yellow-600 text-white text-xs font-bold px-2 py-1 rounded">
+              Low Stock
+              </span>
+              }
         </div>
+
+        <div class="p-4 sm:p-5 lg:p-6">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs text-gray-400 uppercase tracking-wider">{{ product.brand }}</span>
+            <span class="text-gray-600">•</span>
+            <span class="text-xs text-gray-400 uppercase tracking-wider">{{ product.category }}</span>
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2 tracking-tight">
+            {{ product.title }}
+          </h2>
+          <p class="text-xl sm:text-2xl font-bold text-white mb-2">
+            {{ product.price | currency }}
+          </p>
+          <p class="text-sm text-gray-400">{{ product.stock }} in stock</p>
+        </div>
+        <div class="px-4 sm:px-5 lg:px-6 pb-4 sm:pb-5 lg:pb-6">
+          <button routerLink="/products/{{ product.id }}" class="btn btn-primary w-full py-2.5 sm:py-3 text-sm sm:text-base">
+            View Details
+          </button>
+        </div>
+      </div>
       }
     </div>
   </div>

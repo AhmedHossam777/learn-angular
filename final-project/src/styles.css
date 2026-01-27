@@ -1,3 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider transition duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-[0_10px_24px_rgba(0,0,0,0.35)] disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none;
+  }
+
+  .btn-primary {
+    @apply bg-white text-black hover:bg-zinc-100 active:translate-y-px;
+  }
+
+  .btn-ghost {
+    @apply bg-zinc-900 text-white border border-zinc-700 hover:bg-zinc-800;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .btn-outline-danger {
+    @apply border border-red-800 text-red-400 hover:bg-red-900 hover:text-white;
+  }
+}
