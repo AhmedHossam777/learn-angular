@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
-import { IProduct, ProductData } from '../../services/product.interfaces';
-import { Product } from '../../services/product.service';
+import {Component, OnInit} from '@angular/core';
+import {ReactiveFormsModule, FormBuilder, Validators, FormArray, FormGroup} from '@angular/forms';
+import {IProduct, ProductData} from '../../services/product.interfaces';
+import {Product} from '../../services/product.service';
 import {JsonPipe} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -17,7 +18,9 @@ export class CreateProduct implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: Product,
-  ) {}
+    private router : Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -38,24 +41,31 @@ export class CreateProduct implements OnInit {
   get title() {
     return this.productForm.get('title');
   }
+
   get price() {
     return this.productForm.get('price');
   }
+
   get description() {
     return this.productForm.get('description');
   }
+
   get category() {
     return this.productForm.get('category');
   }
+
   get brand() {
     return this.productForm.get('brand');
   }
+
   get stock() {
     return this.productForm.get('stock');
   }
+
   get images() {
     return this.productForm.get('images') as FormArray;
   }
+
   get tags() {
     return this.productForm.get('tags') as FormArray;
   }
@@ -84,9 +94,13 @@ export class CreateProduct implements OnInit {
   removeTag(index: number) {
     this.tags.removeAt(index);
   }
+
   submit() {
     if (this.productForm.valid) {
       console.log('form value', this.productForm.value);
+      // this.productService.create()
+
+      this.router.navigate(['/products']);
     } else {
       this.productForm.markAllAsTouched();
     }
