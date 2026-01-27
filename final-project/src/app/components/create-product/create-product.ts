@@ -18,7 +18,7 @@ export class CreateProduct implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: Product,
-    private router : Router
+    private router: Router
   ) {
   }
 
@@ -98,11 +98,37 @@ export class CreateProduct implements OnInit {
   submit() {
     if (this.productForm.valid) {
       console.log('form value', this.productForm.value);
-      // this.productService.create()
 
-      this.router.navigate(['/products']);
+      const productData: ProductData = this.prepareData()
+
+      this.productService.create(productData).subscribe({
+        next: (response) => {
+          console.log('Product created successfully:', response);
+          this.productForm.reset();
+          this.router.navigate(['/products']);
+        },
+        error: (err) => {
+          console.error('Error creating product:', err);
+          alert(err)
+        }
+      })
+
     } else {
       this.productForm.markAllAsTouched();
+    }
+  }
+
+  private prepareData(): ProductData {
+    const formValue = this.productForm.value
+    return {
+      category: formValue.category.trim(),
+      brand: formValue.brand.trim(),
+      description: formValue.description.trim(),
+      title: formValue.title.trim(),
+      stock: parseInt(formValue.stock),
+      price: parseFloat(formValue.price),
+      images: formValue.images.filter((img: string) => img && img.trim() !== ''),
+      tags: formValue.tags.filter((tag: string) => tag && tag.trim() !== '')
     }
   }
 }
