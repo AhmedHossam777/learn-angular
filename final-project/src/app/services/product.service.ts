@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ProductsResponse, OneProductResponse, IProduct, ProductData } from './product.interfaces';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ProductsResponse, OneProductResponse, IProduct, ProductData} from './product.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +27,9 @@ export class Product {
 
   create(data: ProductData): Observable<OneProductResponse> {
     return this.http.post<OneProductResponse>(this.apiUrl, data);
+  }
+
+  update(data: any, id: string | null): Observable<OneProductResponse> {
+    return this.http.patch<OneProductResponse>(`${this.apiUrl}/${id}`, data)
   }
 }

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ReactiveFormsModule, FormBuilder, Validators, FormArray, FormGroup} from '@angular/forms';
-import {IProduct, ProductData} from '../../services/product.interfaces';
-import {Product} from '../../services/product.service';
-import {JsonPipe} from '@angular/common';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
+import { IProduct, ProductData } from '../../services/product.interfaces';
+import { Product } from '../../services/product.service';
+import { JsonPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -18,9 +18,8 @@ export class CreateProduct implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: Product,
-    private router: Router
-  ) {
-  }
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -99,7 +98,7 @@ export class CreateProduct implements OnInit {
     if (this.productForm.valid) {
       console.log('form value', this.productForm.value);
 
-      const productData: ProductData = this.prepareData()
+      const productData: ProductData = this.prepareData();
 
       this.productService.create(productData).subscribe({
         next: (response) => {
@@ -109,17 +108,16 @@ export class CreateProduct implements OnInit {
         },
         error: (err) => {
           console.error('Error creating product:', err);
-          alert(err)
-        }
-      })
-
+          alert(err);
+        },
+      });
     } else {
       this.productForm.markAllAsTouched();
     }
   }
 
   private prepareData(): ProductData {
-    const formValue = this.productForm.value
+    const formValue = this.productForm.value;
     return {
       category: formValue.category.trim(),
       brand: formValue.brand.trim(),
@@ -128,7 +126,7 @@ export class CreateProduct implements OnInit {
       stock: parseInt(formValue.stock),
       price: parseFloat(formValue.price),
       images: formValue.images.filter((img: string) => img && img.trim() !== ''),
-      tags: formValue.tags.filter((tag: string) => tag && tag.trim() !== '')
-    }
+      tags: formValue.tags.filter((tag: string) => tag && tag.trim() !== ''),
+    };
   }
 }
